@@ -1,0 +1,36 @@
+{
+  "name": "retext",
+  "version": "0.1.0",
+  "description": "Восстанавливает LaTeX-формулу из изображения",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aezv/reTeXt.git"
+  },
+  "author": "aezv",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/aezv/reTeXt/issues"
+  },
+  "homepage": "https://github.com/aezv/reTeXt#readme",
+  "dependencies": {
+    "async": "^3.2.0",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "jimp": "^0.16.1",
+    "mkdirp": "^1.0.4",
+    "multer": "^1.4.2",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "qunit": "^2.12.0"
+  }
+}

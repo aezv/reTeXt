@@ -1,0 +1,11 @@
+{
+
+    "pathCompile": "temp/compile",
+    "prefix": "\\documentclass[fleqn]{article}\\usepackage[left=0mm, top=0mm, right=0mm, bottom=0mm]{geometry}\\usepackage{amsmath, amssymb}\\pagestyle{empty}\\begin{document}\\noindent",
+    "postfix": "\\end{document}",
+    "prefixFormulas": " \\[{}",
+    "postfixFormulas": "{}\\]\\newpage ",
+
+    "precisionSearchSymbols": "0.95",
+    "precisionComparison": "0.95"
+}

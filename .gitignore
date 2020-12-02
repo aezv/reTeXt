@@ -1,0 +1,13 @@
+package-lock.json
+
+/node_modules
+/temp
+
+*.aux
+*.dvi
+*.log
+*.tex
+
+*.png
+*.jpg
+*.jpeg

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style/index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Загрузка файла</h1>
+    <form action="/compile" method="post" enctype="multipart/form-data">
+        <input id="inputFile" type="file" name="fileData" onchange="handleFiles();">
+        <input id="inputId" type="text" name="id" value="" style="display: none;">
+        <input type="submit" value="Скомпилировать">
+    </form>
+    <div id="divStatus">Нет действий</div>
+    <script src="scripts/index.js"></script>
+</body>
+
+</html>
