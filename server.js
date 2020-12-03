@@ -1,43 +1,30 @@
+const cfg = require('./config.json');
 const express = require('express');
-const ejs = require('ejs');
-const multer = require('multer');
-const fs = require('fs');
-
-const compileBin = require('./compileBin.js');
+const multer = require("multer");
+const mkdirp = require('mkdirp');
+const router = require('./router');
 
 const app = express();
-const port = 8000;
 
-app.set('view engine', 'ejs');
+mkdirp.sync('temp/image');
 
-app.use(express.static('source'));
-
-const storageCfg = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'source/client');
+        cb(null, 'temp/image');
     },
     filename: function (req, file, cb) {
-        cb(null, 'file_' + Date.now() + '_' + file.originalname);
+        cb(null, 'img' + Date.now() + '.' + file.originalname.replace(/.+(\.)/, ''));
     }
 });
 
-app.use(multer({ storage: storageCfg }).single("fileData"));
+app.use(multer({ storage: storage }).single('fileData'));
 
-app.get('/', function (req, res) {
-    res.redirect('index.html');
-});
 
-app.post('/compile', function (request, response) {
-    if (!request.body) return response.sendStatus(400);
-    compileBin.build(request.body.id, JSON.parse(fs.readFileSync('./symbols.json')), function (res) {
-        response.render('compile.ejs', {
-            img: 'client/' + request.file.filename,
-            id: request.body.id,
-            status: 'ok: '
-        });
-    });
-});
+app.use(express.static('source'));
+app.use(express.static('temp/image'));
 
-app.listen(port, () => {
-    console.log(`Сервер запущен: http://localhost:${port}`);
+app.use('/', router);
+
+app.listen(cfg.port, cfg.host, () => {
+    console.log(`Сервер запущен: http://${cfg.host}:${cfg.port}`);
 });
