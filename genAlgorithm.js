@@ -46,10 +46,10 @@ processHandlerObject.listener(function (val) {
         console.log('Правое поколение: ' + (val - offset));
         comparisonBuffer[val - offset].push(count);
 
-        //console.log(genProcessingArea(genObjects[count].areas, genObjects[val - offset].areas));
+        let arrayIndex = genProcessingArea(genObjects[count].areas, genObjects[val - offset].areas);
 
         genObjects[val] = new genObject();
-        genObjects[val].tex = selection(genObjects[count].tex, genObjects[val - offset].tex);
+        genObjects[val].tex = selection(genObjects[count].tex, genObjects[val - offset].tex, arrayIndex);
         console.log('Поколение ' + val + ' -> фильтрация');
         genObjects[val].tex = genFilter(genObjects[val].tex);
         console.log('Поколение ' + val + ' -> количество объектов ' + genObjects[val].tex.length);

@@ -51,14 +51,14 @@ selectionArrayFunc = [
     divisionR
 ];
 
-function selection(genObjectTexLeft, genObjectTexRight) {
+function selection(genObjectTexLeft, genObjectTexRight, arrayIndex) {
     let tex = new Array();
-    for (let i = 0; i < selectionArrayFunc.length; i++) {
-        for (let j = 0; j < genObjectTexLeft.length; j++) {
-            for (let g = 0; g < genObjectTexRight.length; g++)
-                tex.push(selectionArrayFunc[i](genObjectTexLeft[j], genObjectTexRight[g]));
-        }
+
+    for (let func = 0; func < selectionArrayFunc.length; func++) {
+        for (let i = 0; i < arrayIndex.length; i++)
+            tex.push(selectionArrayFunc[func](genObjectTexLeft[arrayIndex[i][0]], genObjectTexRight[arrayIndex[i][1]]));
     }
+    
     return tex;
 }
 
