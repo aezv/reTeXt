@@ -7,5 +7,7 @@
     "postfixFormulas": "{}\\]\\newpage ",
 
     "precisionSearchSymbols": "0.95",
-    "precisionComparison": "0.95"
+    "precisionComparison": "0.95",
+
+    "factorArea": "2"
 }

@@ -53,7 +53,6 @@ selectionArrayFunc = [
 
 function selection(genObjectTexLeft, genObjectTexRight) {
     let tex = new Array();
-    console.log(genObjectTexRight);
     for (let i = 0; i < selectionArrayFunc.length; i++) {
         for (let j = 0; j < genObjectTexLeft.length; j++) {
             for (let g = 0; g < genObjectTexRight.length; g++)

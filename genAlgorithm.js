@@ -5,6 +5,7 @@ const genComparison = require('./gen_modules/genComparison').genComparison;
 const selection = require('./gen_modules/genSelection').selection;
 const searchSymbols = require('./gen_modules/genSearchSymbols').searchSymbols;
 const genFilter = require('./gen_modules/genFilter').genFilter;
+const genProcessingArea = require('./gen_modules/genProcessingArea').processingArea;
 
 let comparisonBuffer = new Array();
 let genObjects = new Array();
@@ -44,6 +45,9 @@ processHandlerObject.listener(function (val) {
         console.log('Левое поколение: ' + count);
         console.log('Правое поколение: ' + (val - offset));
         comparisonBuffer[val - offset].push(count);
+
+        //console.log(genProcessingArea(genObjects[count].areas, genObjects[val - offset].areas));
+
         genObjects[val] = new genObject();
         genObjects[val].tex = selection(genObjects[count].tex, genObjects[val - offset].tex);
         console.log('Поколение ' + val + ' -> фильтрация');
