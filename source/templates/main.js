@@ -1,5 +1,12 @@
 const Handlebars = require('handlebars');
 
+const cfgTemplate = {
+    name: 'reTeXt main',
+    header: 'Главная страница',
+    css: 'styles/main.css',
+    script: ''
+}
+
 const source =
     '<!DOCTYPE html>' +
     '<html lang="en">' +
@@ -8,14 +15,14 @@ const source =
 
     '<meta charset="UTF-8">' +
     '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
-    '<title>reTeXt main</title>' +
-    '<link rel="stylesheet" type="text/css" href="styles/main.css"></link>' +
+    '<title>' + cfgTemplate.name + '</title>' +
+    '<link rel="stylesheet" type="text/css" href="' + cfgTemplate.css + '"></link>' +
 
     '</head>' +
     //********************
     '<body>' +
 
-    '<h1>Главная страница</h1>' +
+    '<h1>' + cfgTemplate.header + '</h1>' +
     '<form action="/processing" method="post" enctype="multipart/form-data">' +
     '<p id="inputImage"> <input type="file" name="fileData" accept="image/png, image/jpg, image/jpeg">' +
     '<button type="submit">Отправить</button> </p>' +

@@ -6,23 +6,22 @@ const router = require('./router');
 
 const app = express();
 
-mkdirp.sync(cfg.tempDirectory);
+mkdirp.sync('temp/image');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './temp');
+        cb(null, 'temp/image');
     },
     filename: function (req, file, cb) {
         cb(null, 'img' + Date.now() + '.' + file.originalname.replace(/.+(\.)/, ''));
     }
 });
 
-//app.use(multer({ dest: './temp' }).single('fileData'));
-
 app.use(multer({ storage: storage }).single('fileData'));
 
 
 app.use(express.static('source'));
+app.use(express.static('temp/image'));
 
 app.use('/', router);
 

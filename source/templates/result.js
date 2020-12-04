@@ -1,9 +1,9 @@
 const Handlebars = require('handlebars');
 
 const cfgTemplate = {
-    name: 'reTeXt processing',
-    header: 'Страница обработчика',
-    css: 'styles/processing.css',
+    name: 'reTeXt result',
+    header: 'Результат',
+    css: 'styles/result.css',
     script: ''
 }
 
@@ -23,21 +23,25 @@ const source =
     '<body>' +
 
     '<h1>' + cfgTemplate.header + '</h1>' +
-    '<h2>{{headerL2}}</h2>' +
-    '<img src="{{pathImage}}" alt="">'+
 
     '<form action="/" method="get">' +
     '<button type="submit">Главная страница</button>' +
     '</form>' +
-
-    '<form action="/result" method="post">' +
-    '<button type="submit">Запустить алгоритм</button>' +
-    '</form>' +
+    
+    '{{{loud data}}}' +
 
     '</body>' +
     //********************
     '</html>';
 
+Handlebars.registerHelper('loud', function (dataArray) {
+    let reDataArray = '';
+    for (let i = 0; i < dataArray.length; i++)
+        reDataArray += '<p>' + dataArray[i] + '</p>';
+    return '<div>' + reDataArray + '</div>';
+});
+
 const template = Handlebars.compile(source);
+
 
 module.exports = template;
