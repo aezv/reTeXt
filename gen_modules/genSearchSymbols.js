@@ -1,4 +1,4 @@
-const bin = require('./bin.json');
+const bin = require('../temp/bin.json');
 const cfg = require('../config.json');
 const genObject = require('./genObject').genObject;
 const scan = require('./searchArea').scan;

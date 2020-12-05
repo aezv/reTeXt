@@ -9,6 +9,6 @@ compileBin(symbols, function (res) {
         objects[i][0] = symbols[i][0];
         objects[i][1] = res[i];
     }
-    fs.writeFileSync('./gen_modules/bin.json', JSON.stringify(objects));
+    fs.writeFileSync('./temp/bin.json', JSON.stringify(objects));
     console.log('Построение символов завершено');
 });
