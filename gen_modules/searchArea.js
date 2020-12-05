@@ -16,12 +16,25 @@ function comparison(originalMatrix, comparisonMatrix, offsetX, offsetY) {
     return result;
 }
 
-function scan(precision, originalMatrix, comparisonMatrix) {
+function scan(precision, originalMatrix, comparisonMatrix, area) {
+    //console.log('до -> ' + area + ' -> ' + (originalMatrix.length - comparisonMatrix.length) + ' -> ' + (originalMatrix[0].length - comparisonMatrix[0].length));
     let maxPrecision = 0;
     let areas = new Array();
     let tempX = comparisonMatrix.length / originalMatrix.length;
     let tempY = comparisonMatrix[0].length / originalMatrix[0].length;
     if (tempX <= 1 && tempY <= 1) {
+        if (area) {
+            if (!(0 <= area[0]) || !(area[0] <= originalMatrix.length - comparisonMatrix.length))
+                area[0] = 0;
+            if (!(0 <= area[1]) || !(area[1] <= originalMatrix.length - comparisonMatrix.length))
+                area[1] = originalMatrix.length - comparisonMatrix.length;
+        }
+        else {
+            area = new Array();
+            area[0] = 0;
+            area[1] = originalMatrix.length - comparisonMatrix.length;
+        }
+        //console.log('до -> ' + area + ' -> ' + (originalMatrix.length - comparisonMatrix.length) + ' -> ' + (originalMatrix[0].length - comparisonMatrix[0].length));
         for (let offsetX = 0; offsetX <= originalMatrix.length - comparisonMatrix.length; offsetX++) {
             for (let offsetY = 0; offsetY <= originalMatrix[0].length - comparisonMatrix[0].length; offsetY++) {
                 let resultComparison = comparison(originalMatrix, comparisonMatrix, offsetX, offsetY);
@@ -37,8 +50,6 @@ function scan(precision, originalMatrix, comparisonMatrix) {
             }
         }
     }
-    /*if(result.length)
-        console.log(result);*/
     return {
         areas: areas,
         maxPrecision: maxPrecision
