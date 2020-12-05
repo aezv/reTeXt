@@ -48,8 +48,7 @@ processHandlerObject.listener(function (val) {
         let processingArea = genProcessingArea(genObjects[count].areas, genObjects[val - offset].areas);
         if (processingArea.arrayIndex.length) {
             genObjects[val] = new genObject();
-            genObjects[val].tex = selection(genObjects[count].tex, genObjects[val - offset].tex, processingArea);
-            genObjects[val].areas = processingArea.arrayAreas;
+            genObjects[val] = selection(genObjects[count].tex, genObjects[val - offset].tex, processingArea);
             console.log('Поколение ' + val + ' -> фильтрация');
             genObjects[val] = genFilter(genObjects[val]);
             console.log('Поколение ' + val + ' -> количество объектов ' + genObjects[val].tex.length);

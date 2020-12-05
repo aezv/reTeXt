@@ -27,10 +27,8 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
                                     let pushAreas = new Array();
-                                    pushAreas[0] = genObjectAreasLeft[i][ii][0];
-                                    pushAreas[1] = genObjectAreasRight[j][jj][1];
-                                    pushAreas[2] = genObjectAreasLeft[i][ii][2];
-                                    pushAreas[3] = genObjectAreasRight[j][jj][3];
+                                    pushAreas[0] = genObjectAreasLeft[i][ii][0] - Math.trunc(width / cfg.outputFactorArea);
+                                    pushAreas[1] = genObjectAreasRight[j][jj][1] + Math.trunc(width / cfg.outputFactorArea);
                                     arrayAreas.push(pushAreas);
                                     arrayPosition.push({
                                         horizontal: 'left',
@@ -47,10 +45,8 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
                                     let pushAreas = new Array();
-                                    pushAreas[0] = genObjectAreasLeft[i][ii][0];
-                                    pushAreas[1] = genObjectAreasRight[j][jj][1];
-                                    pushAreas[2] = genObjectAreasRight[j][jj][2];
-                                    pushAreas[3] = genObjectAreasLeft[i][ii][3];
+                                    pushAreas[0] = genObjectAreasLeft[i][ii][0] - Math.trunc(width / cfg.outputFactorArea);
+                                    pushAreas[1] = genObjectAreasRight[j][jj][1] + Math.trunc(width / cfg.outputFactorArea);
                                     arrayAreas.push(pushAreas);
                                     arrayPosition.push({
                                         horizontal: 'left',
@@ -73,10 +69,8 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
                                     let pushAreas = new Array();
-                                    pushAreas[0] = genObjectAreasRight[j][jj][0];
-                                    pushAreas[1] = genObjectAreasLeft[i][ii][1];
-                                    pushAreas[2] = genObjectAreasLeft[i][ii][2];
-                                    pushAreas[3] = genObjectAreasRight[j][jj][3];
+                                    pushAreas[0] = genObjectAreasRight[j][jj][0] - Math.trunc(width / cfg.outputFactorArea);
+                                    pushAreas[1] = genObjectAreasLeft[i][ii][1] + Math.trunc(width / cfg.outputFactorArea);
                                     arrayAreas.push(pushAreas);
                                     arrayPosition.push({
                                         horizontal: 'right',
@@ -93,10 +87,8 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
                                     let pushAreas = new Array();
-                                    pushAreas[0] = genObjectAreasRight[j][jj][0];
-                                    pushAreas[1] = genObjectAreasLeft[i][ii][1];
-                                    pushAreas[2] = genObjectAreasRight[j][jj][2];
-                                    pushAreas[3] = genObjectAreasLeft[i][ii][3];
+                                    pushAreas[0] = genObjectAreasRight[j][jj][0] - Math.trunc(width / cfg.outputFactorArea);
+                                    pushAreas[1] = genObjectAreasLeft[i][ii][1] + Math.trunc(width / cfg.outputFactorArea);
                                     arrayAreas.push(pushAreas);
                                     arrayPosition.push({
                                         horizontal: 'right',
