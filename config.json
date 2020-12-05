@@ -11,5 +11,6 @@
     "precisionSearchSymbols": "0.95",
     "precisionComparison": "0.9",
 
-    "factorArea": "1.5"
+    "factorWidthArea": "1.25",
+    "factorHeightArea": "1.5"
 }

@@ -8,8 +8,8 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
             for (let ii = 0; ii < genObjectAreasLeft[i].length; ii++) {
                 for (let jj = 0; jj < genObjectAreasRight[j].length; jj++) {
                     //console.log(genObjectAreasRight[j].length + '->' + j + '->' + jj);
-                    let width = ((genObjectAreasLeft[i][ii][1] - genObjectAreasLeft[i][ii][0]) + (genObjectAreasRight[j][jj][1] - genObjectAreasRight[j][jj][0])) * cfg.factorArea;
-                    let height = ((genObjectAreasLeft[i][ii][3] - genObjectAreasLeft[i][ii][2]) + (genObjectAreasRight[j][jj][3] - genObjectAreasRight[j][jj][2])) * cfg.factorArea;
+                    let width = ((genObjectAreasLeft[i][ii][1] - genObjectAreasLeft[i][ii][0]) + (genObjectAreasRight[j][jj][1] - genObjectAreasRight[j][jj][0])) * cfg.factorWidthArea;
+                    let height = ((genObjectAreasLeft[i][ii][3] - genObjectAreasLeft[i][ii][2]) + (genObjectAreasRight[j][jj][3] - genObjectAreasRight[j][jj][2])) * cfg.factorHeightArea;
 
                     //4 случая, когда правый объект -> справа и выше, справа и ниже, слева и выше, слева и ниже
 
