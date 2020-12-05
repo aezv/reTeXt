@@ -6,59 +6,47 @@ function unificationR(objL, objR) {
     return objR + objL;
 }
 
-function additionL(objL, objR) {
-    return objL + '+' + objR;
+function divisionU(objU, objD) {
+    return '\\frac{' + objU + '}{' + objD + '}';
 }
 
-function additionR(objL, objR) {
-    return objR + '+' + objL;
+function divisionD(objU, objD) {
+    return '\\frac{' + objD + '}{' + objU + '}';
 }
 
-function subtractionL(objL, objR) {
-    return objL + '-' + objR;
-}
-
-function subtractionR(objL, objR) {
-    return objR + '-' + objL;
-}
-
-function comparisonL(objL, objR) {
-    return objL + '=' + objR;
-}
-
-function comparisonR(objL, objR) {
-    return objR + '=' + objL;
-}
-
-function divisionL(objL, objR) {
-    return '\\frac{' + objL + '}{' + objR + '}';
-}
-
-function divisionR(objL, objR) {
-    return '\\frac{' + objR + '}{' + objL + '}';
-}
-
-selectionArrayFunc = [
+let selectionArrayFuncHorizontal = [
     unificationL,
-    unificationR,
-    additionL,
-    additionR,
-    subtractionL,
-    subtractionR,
-    comparisonL,
-    comparisonR,
-    divisionL,
-    divisionR
+    unificationR
 ];
 
-function selection(genObjectTexLeft, genObjectTexRight, arrayIndex) {
+let selectionArrayFuncVertical = [
+    divisionU,
+    divisionD
+];
+
+function selection(genObjectTexLeft, genObjectTexRight, genProcessingArea) {
     let tex = new Array();
 
-    for (let func = 0; func < selectionArrayFunc.length; func++) {
-        for (let i = 0; i < arrayIndex.length; i++)
-            tex.push(selectionArrayFunc[func](genObjectTexLeft[arrayIndex[i][0]], genObjectTexRight[arrayIndex[i][1]]));
+    for (let i = 0; i < genProcessingArea.arrayIndex.length; i++) {
+        if (genProcessingArea.arrayPosition[i].horizontal == 'left') {
+            for (let func = 0; func < selectionArrayFuncHorizontal.length; func += 2)
+                tex.push(selectionArrayFuncHorizontal[func](genObjectTexLeft[genProcessingArea.arrayIndex[i][0]], genObjectTexRight[genProcessingArea.arrayIndex[i][1]]));
+        }
+        else {
+            for (let func = 1; func < selectionArrayFuncHorizontal.length; func += 2)
+                tex.push(selectionArrayFuncHorizontal[func](genObjectTexLeft[genProcessingArea.arrayIndex[i][0]], genObjectTexRight[genProcessingArea.arrayIndex[i][1]]));
+        }
+
+        if (genProcessingArea.arrayPosition[i].vertical == 'up') {
+            for (let func = 0; func < selectionArrayFuncVertical.length; func += 2)
+                tex.push(selectionArrayFuncVertical[func](genObjectTexLeft[genProcessingArea.arrayIndex[i][0]], genObjectTexRight[genProcessingArea.arrayIndex[i][1]]));
+        }
+        else {
+            for (let func = 1; func < selectionArrayFuncVertical.length; func += 2)
+                tex.push(selectionArrayFuncVertical[func](genObjectTexLeft[genProcessingArea.arrayIndex[i][0]], genObjectTexRight[genProcessingArea.arrayIndex[i][1]]));
+        }
     }
-    
+
     return tex;
 }
 

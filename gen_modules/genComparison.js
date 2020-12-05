@@ -6,10 +6,14 @@ function genComparison(originalMatrix, comparisonMatrixes, genObjectTex) {
     let object = new genObject;
 
     for (let i = 0; i < comparisonMatrixes.length; i++) {
-        let area = scan(cfg.precisionComparison, originalMatrix, comparisonMatrixes[i]);
-        if (area.length) {
+        let resultScan = scan(cfg.precisionComparison, originalMatrix, comparisonMatrixes[i]);
+        if (resultScan.areas.length) {
             object.tex.push(genObjectTex[i]);
-            object.areas.push(area);
+            object.areas.push(resultScan.areas);
+            if (object.maxPrecision.value < resultScan.maxPrecision) {
+                object.maxPrecision.value = resultScan.maxPrecision;
+                object.maxPrecision.index = object.tex.length - 1;
+            }
         }
     }
 

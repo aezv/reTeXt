@@ -2,10 +2,10 @@ const cfg = require('../config.json');
 
 function processingArea(genObjectAreasLeft, genObjectAreasRight) {
     let arrayIndex = new Array();
+    let arrayPosition = new Array();
     for (let i = 0; i < genObjectAreasLeft.length; i++) {
-        for (let j = 0; j < genObjectAreasRight.length - 1; j++) {
+        for (let j = 0; j < genObjectAreasRight.length; j++) {
             for (let ii = 0; ii < genObjectAreasLeft[i].length; ii++) {
-                let flag = false;
                 for (let jj = 0; jj < genObjectAreasRight[j].length; jj++) {
                     //console.log(genObjectAreasRight[j].length + '->' + j + '->' + jj);
                     let width = ((genObjectAreasLeft[i][ii][1] - genObjectAreasLeft[i][ii][0]) + (genObjectAreasRight[j][jj][1] - genObjectAreasRight[j][jj][0])) * cfg.factorArea;
@@ -25,8 +25,10 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[0] = i;
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
-                                    flag = true;
-                                    break;
+                                    arrayPosition.push({
+                                        horizontal: 'left',
+                                        vertical: 'up'
+                                    });
                                 }
                             }
                             else {
@@ -37,8 +39,10 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[0] = i;
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
-                                    flag = true;
-                                    break;
+                                    arrayPosition.push({
+                                        horizontal: 'left',
+                                        vertical: 'down'
+                                    });
                                 }
                             }
                         }
@@ -55,8 +59,10 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[0] = i;
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
-                                    flag = true;
-                                    break;
+                                    arrayPosition.push({
+                                        horizontal: 'right',
+                                        vertical: 'up'
+                                    });
                                 }
                             }
                             else {
@@ -67,19 +73,22 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[0] = i;
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
-                                    flag = true;
-                                    break;
+                                    arrayPosition.push({
+                                        horizontal: 'right',
+                                        vertical: 'down'
+                                    });
                                 }
                             }
                         }
                     }
                 }
-                if (flag)
-                    break;
             }
         }
     }
-    return arrayIndex;
+    return {
+        arrayIndex: arrayIndex,
+        arrayPosition: arrayPosition
+    };
 }
 
 module.exports.processingArea = processingArea;

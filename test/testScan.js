@@ -1,6 +1,6 @@
 const cfg = require('../config.json');
 const compileBin = require('../gen_modules/compileBin').build;
-const scan = require('../gen_modules/scan').scan;
+const scan = require('../gen_modules/searchArea').scan;
 
 let libraryTestScan = [
     [

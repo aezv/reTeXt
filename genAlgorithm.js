@@ -45,39 +45,41 @@ processHandlerObject.listener(function (val) {
         console.log('Левое поколение: ' + count);
         console.log('Правое поколение: ' + (val - offset));
         comparisonBuffer[val - offset].push(count);
+        let processingArea = genProcessingArea(genObjects[count].areas, genObjects[val - offset].areas);
+        if (processingArea.arrayIndex.length) {
+            genObjects[val] = new genObject();
+            genObjects[val].tex = selection(genObjects[count].tex, genObjects[val - offset].tex, processingArea);
+            console.log('Поколение ' + val + ' -> фильтрация');
+            genObjects[val].tex = genFilter(genObjects[val].tex);
+            console.log('Поколение ' + val + ' -> количество объектов ' + genObjects[val].tex.length);
+            console.log('Поколение ' + val + ' -> компиляция');
 
-        let arrayIndex = genProcessingArea(genObjects[count].areas, genObjects[val - offset].areas);
-
-        genObjects[val] = new genObject();
-        genObjects[val].tex = selection(genObjects[count].tex, genObjects[val - offset].tex, arrayIndex);
-        console.log('Поколение ' + val + ' -> фильтрация');
-        genObjects[val].tex = genFilter(genObjects[val].tex);
-        console.log('Поколение ' + val + ' -> количество объектов ' + genObjects[val].tex.length);
-        console.log('Поколение ' + val + ' -> компиляция');
-
-        compileBin(genObjects[val].tex, function (matrixes) {
-            console.log('Поколение ' + val + ' -> сравнение');
-            genObjects[val] = genComparison(originalMatrix, matrixes, genObjects[val].tex);
-            console.log('Поколение ' + val + ' -> количество объектов прошедших отбор ' + genObjects[val].tex.length);
-            console.log('Поколение ' + val + ' -> объекты ');
-            console.log(genObjects[val].tex);
-            if (genObjects[val].tex.length) {
-                count = val;
-                offset = 1;
-                console.log('ok');
-                //console.log('Поколение ' + val + ' -> результат: точность ' + result.maxResult.maxScan + ', формула ' + result.maxResult.maxTex);
-            }
-            else
-                console.log('Поколение ' + val + ' -> результат: пустое поколение');
-            if (val < 10)
-                processHandlerObject.value++;
-            /*else {
-                console.log('Результат -> ' + result.maxResult.maxTex);
-            }*/
-        });
+            compileBin(genObjects[val].tex, function (matrixes) {
+                console.log('Поколение ' + val + ' -> сравнение');
+                genObjects[val] = genComparison(originalMatrix, matrixes, genObjects[val].tex);
+                console.log('Поколение ' + val + ' -> количество объектов прошедших отбор ' + genObjects[val].tex.length);
+                console.log('Поколение ' + val + ' -> объекты ');
+                console.log(genObjects[val].tex);
+                if (genObjects[val].tex.length) {
+                    count = val;
+                    offset = 1;
+                    console.log('Поколение ' + val + ' -> результат: точность ' + genObjects[val].maxPrecision.value + ', формула ' + genObjects[val].tex[genObjects[val].maxPrecision.index]);
+                }
+                else
+                    console.log('Поколение ' + val + ' -> результат: пустое поколение');
+                if (genObjects[val].maxPrecision.value < 0.95)
+                    processHandlerObject.value++;
+                else
+                    console.log('Результат -> ' + genObjects[val].tex[genObjects[val].maxPrecision.index]);
+            });
+        }
+        else {
+            console.log('Поколение ' + val + ' -> результат: пустое поколение');
+            genObjects[val] = new genObject();
+            processHandlerObject.value++;
+        }
     }
     else if (genObjects[val - 1].tex.length && !boolGen) {
-        console.log('object');
         if (count == 0) {
             offset++;
             count = val - offset;
@@ -87,7 +89,6 @@ processHandlerObject.listener(function (val) {
         processHandlerObject.value += 0;
     }
     else {
-        console.log('re');
         genObjects.splice(genObjects.length - 1, 1);
         if (count == 0) {
             offset++;
