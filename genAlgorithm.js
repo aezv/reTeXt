@@ -49,14 +49,15 @@ processHandlerObject.listener(function (val) {
         if (processingArea.arrayIndex.length) {
             genObjects[val] = new genObject();
             genObjects[val].tex = selection(genObjects[count].tex, genObjects[val - offset].tex, processingArea);
+            genObjects[val].areas = processingArea.arrayAreas;
             console.log('Поколение ' + val + ' -> фильтрация');
-            genObjects[val].tex = genFilter(genObjects[val].tex);
+            genObjects[val] = genFilter(genObjects[val]);
             console.log('Поколение ' + val + ' -> количество объектов ' + genObjects[val].tex.length);
             console.log('Поколение ' + val + ' -> компиляция');
 
             compileBin(genObjects[val].tex, function (matrixes) {
                 console.log('Поколение ' + val + ' -> сравнение');
-                genObjects[val] = genComparison(originalMatrix, matrixes, genObjects[val].tex);
+                genObjects[val] = genComparison(originalMatrix, matrixes, genObjects[val].tex, genObjects[val].areas);
                 console.log('Поколение ' + val + ' -> количество объектов прошедших отбор ' + genObjects[val].tex.length);
                 console.log('Поколение ' + val + ' -> объекты ');
                 console.log(genObjects[val].tex);

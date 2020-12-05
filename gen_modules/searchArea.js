@@ -16,14 +16,27 @@ function comparison(originalMatrix, comparisonMatrix, offsetX, offsetY) {
     return result;
 }
 
-function scan(precision, originalMatrix, comparisonMatrix) {
+function scan(precision, originalMatrix, comparisonMatrix, area) {
     let maxPrecision = 0;
     let areas = new Array();
     let tempX = comparisonMatrix.length / originalMatrix.length;
     let tempY = comparisonMatrix[0].length / originalMatrix[0].length;
     if (tempX <= 1 && tempY <= 1) {
-        for (let offsetX = 0; offsetX <= originalMatrix.length - comparisonMatrix.length; offsetX++) {
-            for (let offsetY = 0; offsetY <= originalMatrix[0].length - comparisonMatrix[0].length; offsetY++) {
+        if (area && area.length) {
+            area[0] = 0 <= area[0] ? area[0] : 0;
+            area[1] = area[1] <= originalMatrix.length - comparisonMatrix.length ? area[1] : originalMatrix.length - comparisonMatrix.length;
+            area[2] = 0 <= area[2] ? area[2] : 0;
+            area[3] = area[3] <= originalMatrix[0].length - comparisonMatrix[0].length ? area[3] : originalMatrix[0].length - comparisonMatrix[0].length;
+        }
+        else {
+            area = new Array();
+            area[0] = 0;
+            area[1] = originalMatrix.length - comparisonMatrix.length;
+            area[2] = 0;
+            area[3] = originalMatrix[0].length - comparisonMatrix[0].length;
+        }
+        for (let offsetX = area[0]; offsetX <= area[1]; offsetX++) {
+            for (let offsetY = area[2]; offsetY <= area[3]; offsetY++) {
                 let resultComparison = comparison(originalMatrix, comparisonMatrix, offsetX, offsetY);
                 if (precision < resultComparison) {
                     let object = new Array();

@@ -2,6 +2,7 @@ const cfg = require('../config.json');
 
 function processingArea(genObjectAreasLeft, genObjectAreasRight) {
     let arrayIndex = new Array();
+    let arrayAreas = new Array();
     let arrayPosition = new Array();
     for (let i = 0; i < genObjectAreasLeft.length; i++) {
         for (let j = 0; j < genObjectAreasRight.length; j++) {
@@ -25,6 +26,12 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[0] = i;
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
+                                    let pushAreas = new Array();
+                                    pushAreas[0] = genObjectAreasLeft[i][ii][0];
+                                    pushAreas[1] = genObjectAreasRight[j][jj][1];
+                                    pushAreas[2] = genObjectAreasLeft[i][ii][2];
+                                    pushAreas[3] = genObjectAreasRight[j][jj][3];
+                                    arrayAreas.push(pushAreas);
                                     arrayPosition.push({
                                         horizontal: 'left',
                                         vertical: 'up'
@@ -39,6 +46,12 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[0] = i;
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
+                                    let pushAreas = new Array();
+                                    pushAreas[0] = genObjectAreasLeft[i][ii][0];
+                                    pushAreas[1] = genObjectAreasRight[j][jj][1];
+                                    pushAreas[2] = genObjectAreasRight[j][jj][2];
+                                    pushAreas[3] = genObjectAreasLeft[i][ii][3];
+                                    arrayAreas.push(pushAreas);
                                     arrayPosition.push({
                                         horizontal: 'left',
                                         vertical: 'down'
@@ -59,6 +72,12 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[0] = i;
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
+                                    let pushAreas = new Array();
+                                    pushAreas[0] = genObjectAreasRight[j][jj][0];
+                                    pushAreas[1] = genObjectAreasLeft[i][ii][1];
+                                    pushAreas[2] = genObjectAreasLeft[i][ii][2];
+                                    pushAreas[3] = genObjectAreasRight[j][jj][3];
+                                    arrayAreas.push(pushAreas);
                                     arrayPosition.push({
                                         horizontal: 'right',
                                         vertical: 'up'
@@ -73,6 +92,12 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
                                     pushIndex[0] = i;
                                     pushIndex[1] = j;
                                     arrayIndex.push(pushIndex);
+                                    let pushAreas = new Array();
+                                    pushAreas[0] = genObjectAreasRight[j][jj][0];
+                                    pushAreas[1] = genObjectAreasLeft[i][ii][1];
+                                    pushAreas[2] = genObjectAreasRight[j][jj][2];
+                                    pushAreas[3] = genObjectAreasLeft[i][ii][3];
+                                    arrayAreas.push(pushAreas);
                                     arrayPosition.push({
                                         horizontal: 'right',
                                         vertical: 'down'
@@ -87,6 +112,7 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
     }
     return {
         arrayIndex: arrayIndex,
+        arrayAreas: arrayAreas,
         arrayPosition: arrayPosition
     };
 }
