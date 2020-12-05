@@ -100,7 +100,7 @@ processHandlerObject.listener(function (val) {
 });
 //**************************************
 
-pngToBin('test1.png').then(matrix => {
+pngToBin(process.argv[2]).then(matrix => {
     originalMatrix = matrix[0];
     searchSymbols(originalMatrix, function (error, rGenObject) {
         genObjects[0] = rGenObject;
