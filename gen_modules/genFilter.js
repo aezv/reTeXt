@@ -13,15 +13,22 @@ let reg = [
     /{-}/g,
 ];
 
-function genFilter(fGenObject) {
+function genFilter(fGenObject, maxWidth, maxHeight) {
     let object = new genObject();
     for (let i = 0; i < fGenObject.tex.length; i++) {
         let filterBool = true;
 
-        for (let j = 0; j < reg.length; j++) {
-            if (fGenObject.tex[i].search(reg[j]) != -1) {
+        if (filterBool) {
+            if (maxWidth < fGenObject.areas[i][1] || maxHeight < fGenObject.areas[i][3])
                 filterBool = false;
-                break;
+        }
+
+        if (filterBool) {
+            for (let j = 0; j < reg.length; j++) {
+                if (fGenObject.tex[i].search(reg[j]) != -1) {
+                    filterBool = false;
+                    break;
+                }
             }
         }
 
