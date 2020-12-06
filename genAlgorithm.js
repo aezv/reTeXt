@@ -56,7 +56,7 @@ processHandlerObject.listener(function (val) {
 
             compileBin(genObjects[val].tex, function (matrixes) {
                 console.log('Поколение ' + val + ' -> сравнение');
-                genObjects[val] = genComparison(originalMatrix, matrixes, genObjects[val].tex, genObjects[val].areas);
+                genObjects[val] = genComparison(originalMatrix, matrixes, genObjects[val].tex);
                 console.log('Поколение ' + val + ' -> количество объектов прошедших отбор ' + genObjects[val].tex.length);
                 console.log('Поколение ' + val + ' -> объекты ');
                 console.log(genObjects[val].tex);
