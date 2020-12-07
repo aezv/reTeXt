@@ -8,6 +8,46 @@ function unificationR(objL, objR) {
     return objR + objL;
 }
 
+function mergerL(objL, objR) {
+    if (1 < objL.length && 1 < objR.length) {
+        let j = 0;
+        let count = 0;
+        for (let i = objL.length - 1; i >= 0; i--) {
+            if (j < objR.length) {
+                if (objL[i] == objR[j])
+                    count++;
+                else
+                    break;
+            }
+            else
+                break;
+            j++;
+        }
+        objL = objL.slice(0, objL.length - count);
+    }
+    return objL + objR;
+}
+
+function mergerR(objL, objR) {
+    if (1 < objL.length && 1 < objR.length) {
+        let j = 0;
+        let count = 0;
+        for (let i = objR.length - 1; i >= 0; i--) {
+            if (j < objL.length) {
+                if (objR[i] == objL[j])
+                    count++;
+                else
+                    break;
+            }
+            else
+                break;
+            j++;
+        }
+        objR = objR.slice(0, objR.length - count);
+    }
+    return objR + objL;
+}
+
 function divisionU(objU, objD) {
     return '\\frac{' + objU + '}{' + objD + '}';
 }
@@ -16,9 +56,11 @@ function divisionD(objU, objD) {
     return '\\frac{' + objD + '}{' + objU + '}';
 }
 
-let selectionArrayFuncHorizontal = [
+let selectionArrayFuncHorizontal = [ //1.14
     unificationL,
-    unificationR
+    unificationR,
+    mergerL,
+    mergerR
 ];
 
 let selectionArrayFuncVertical = [
