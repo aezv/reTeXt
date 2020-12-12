@@ -1,6 +1,6 @@
 const bin = require('../temp/bin.json');
 const cfg = require('../config.json');
-const genObject = require('./genObject').genObject;
+const genObject = require('./genObject');
 const scan = require('./comparison');
 
 function searchSymbols(originalMatrix, callback) {
@@ -18,4 +18,4 @@ function searchSymbols(originalMatrix, callback) {
     }
     callback(null, object);
 }
-module.exports.searchSymbols = searchSymbols;
+module.exports = searchSymbols;

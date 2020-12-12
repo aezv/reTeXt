@@ -195,4 +195,4 @@ function pngToBin(prefix, postfix, countStart, countEnd) {
     fs.writeFileSync('./temp.json', JSON.stringify(result[0]));
 });*/
 
-module.exports.pngToBin = pngToBin; // префикс пути, постфикс пути, начало отсчета, конец отсчета 
+module.exports = pngToBin; // префикс пути, постфикс пути, начало отсчета, конец отсчета 

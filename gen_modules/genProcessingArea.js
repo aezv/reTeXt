@@ -45,4 +45,4 @@ function processingArea(genObjectAreasLeft, genObjectAreasRight) {
     };
 }
 
-module.exports.processingArea = processingArea;
+module.exports = processingArea;

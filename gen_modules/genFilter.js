@@ -1,4 +1,4 @@
-const genObject = require('./genObject').genObject;
+const genObject = require('./genObject');
 
 let reg = [
     /(}\^)/g,
@@ -59,4 +59,4 @@ function genFilter(fGenObjects, index) {
     return object;
 }
 
-module.exports.genFilter = genFilter;
+module.exports = genFilter;

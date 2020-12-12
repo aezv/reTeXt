@@ -1,6 +1,6 @@
 const fs = require('fs');
 const symbols = require('./gen_modules/symbols.json');
-const compileBin = require('./gen_modules/compileBin').build;
+const compileBin = require('./gen_modules/compileBin');
 
 compileBin(symbols, function (res) {
     let objects = new Array();

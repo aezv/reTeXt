@@ -3,9 +3,9 @@ const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const child_process = require('child_process');
 const cfg = require('../config.json');
-const pngToBin = require('./pngToBin').pngToBin;
+const pngToBin = require('./pngToBin');
 
-function build(latexFormuls, callback) {
+function compileBin(latexFormuls, callback) {
     let tempPath = cfg.pathCompile + '/' + Date.now();
     let strFormuls = '';
     mkdirp.sync(tempPath + '/img');
@@ -34,4 +34,4 @@ function build(latexFormuls, callback) {
     });
 }
 
-module.exports.build = build;
+module.exports = compileBin;

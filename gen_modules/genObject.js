@@ -9,4 +9,4 @@ class genObject {
     }
 }
 
-module.exports.genObject = genObject;
+module.exports = genObject;

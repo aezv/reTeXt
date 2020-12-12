@@ -43,4 +43,4 @@ function scan(precision, originalMatrix, comparisonMatrix) {
     };
 }
 
-module.exports.scan = scan;
+module.exports = scan;

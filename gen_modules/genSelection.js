@@ -1,4 +1,4 @@
-const genObject = require('./genObject').genObject;
+const genObject = require('./genObject');
 
 function unificationL(objL, objR) {
     return objL + objR;
@@ -76,4 +76,4 @@ function selection(genObjectTexLeft, genObjectTexRight) {
     return object;
 }
 
-module.exports.selection = selection;
+module.exports = selection;

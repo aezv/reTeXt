@@ -1,4 +1,4 @@
-const genObject = require('./genObject').genObject;
+const genObject = require('./genObject');
 const scan = require('./comparison');
 const cfg = require('../config.json');
 
@@ -20,4 +20,4 @@ function genComparison(originalMatrix, comparisonMatrixes, genObjectTex) {
     return object;
 }
 
-module.exports.genComparison = genComparison;
+module.exports = genComparison;

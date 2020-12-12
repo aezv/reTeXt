@@ -1,11 +1,11 @@
-const genObject = require('./gen_modules/genObject').genObject;
-const pngToBin = require('./gen_modules/pngToBin').pngToBin;
-const compileBin = require('./gen_modules/compileBin').build;
-const genComparison = require('./gen_modules/genComparison').genComparison;
-const selection = require('./gen_modules/genSelection').selection;
-const searchSymbols = require('./gen_modules/genSearchSymbols').searchSymbols;
-const genFilter = require('./gen_modules/genFilter').genFilter;
-const genProcessingArea = require('./gen_modules/genProcessingArea').processingArea;
+const genObject = require('./gen_modules/genObject');
+const pngToBin = require('./gen_modules/pngToBin');
+const compileBin = require('./gen_modules/compileBin');
+const genComparison = require('./gen_modules/genComparison');
+const selection = require('./gen_modules/genSelection');
+const searchSymbols = require('./gen_modules/genSearchSymbols');
+const genFilter = require('./gen_modules/genFilter');
+const genProcessingArea = require('./gen_modules/genProcessingArea');
 
 function genAlgorithm(binMatrixesBlock, callback) {
     let comparisonBuffer = new Array();
