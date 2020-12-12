@@ -45,39 +45,32 @@ processHandlerObject.listener(function (val) {
         console.log('Левое поколение: ' + count);
         console.log('Правое поколение: ' + (val - offset));
         comparisonBuffer[val - offset].push(count);
-        let processingArea = genProcessingArea(genObjects[count].areas, genObjects[val - offset].areas);
-        if (processingArea.arrayIndex.length) {
-            genObjects[val] = new genObject();
-            genObjects[val] = selection(genObjects[count].tex, genObjects[val - offset].tex, processingArea);
-            console.log('Поколение ' + val + ' -> фильтрация');
-            genObjects[val] = genFilter(genObjects, val, originalMatrix.length, originalMatrix[0].length);
-            console.log('Поколение ' + val + ' -> количество объектов ' + genObjects[val].tex.length);
-            console.log('Поколение ' + val + ' -> компиляция');
 
-            compileBin(genObjects[val].tex, function (matrixes) {
-                console.log('Поколение ' + val + ' -> сравнение');
-                genObjects[val] = genComparison(originalMatrix, matrixes, genObjects[val].tex);
-                console.log('Поколение ' + val + ' -> количество объектов прошедших отбор ' + genObjects[val].tex.length);
-                console.log('Поколение ' + val + ' -> объекты ');
-                console.log(genObjects[val].tex);
-                if (genObjects[val].tex.length) {
-                    count = val;
-                    offset = 1;
-                    console.log('Поколение ' + val + ' -> результат: точность ' + genObjects[val].maxPrecision.value + ', формула ' + genObjects[val].tex[genObjects[val].maxPrecision.index]);
-                }
-                else
-                    console.log('Поколение ' + val + ' -> результат: пустое поколение');
-                if (genObjects[val].maxPrecision.value < 0.95)
-                    processHandlerObject.value++;
-                else
-                    console.log('Результат -> ' + genObjects[val].tex[genObjects[val].maxPrecision.index]);
-            });
-        }
-        else {
-            console.log('Поколение ' + val + ' -> результат: пустое поколение');
-            genObjects[val] = new genObject();
-            processHandlerObject.value++;
-        }
+        genObjects[val] = new genObject();
+        genObjects[val] = selection(genObjects[count].tex, genObjects[val - offset].tex);
+        console.log('Поколение ' + val + ' -> фильтрация');
+        genObjects[val] = genFilter(genObjects, val);
+        console.log('Поколение ' + val + ' -> количество объектов ' + genObjects[val].tex.length);
+        console.log('Поколение ' + val + ' -> компиляция');
+
+        compileBin(genObjects[val].tex, function (matrixes) {
+            console.log('Поколение ' + val + ' -> сравнение');
+            genObjects[val] = genComparison(originalMatrix, matrixes, genObjects[val].tex);
+            console.log('Поколение ' + val + ' -> количество объектов прошедших отбор ' + genObjects[val].tex.length);
+            console.log('Поколение ' + val + ' -> объекты ');
+            console.log(genObjects[val].tex);
+            if (genObjects[val].tex.length) {
+                count = val;
+                offset = 1;
+                console.log('Поколение ' + val + ' -> результат: точность ' + genObjects[val].maxPrecision.value + ', формула ' + genObjects[val].tex[genObjects[val].maxPrecision.index]);
+            }
+            else
+                console.log('Поколение ' + val + ' -> результат: пустое поколение');
+            if (genObjects[val].maxPrecision.value < 0.995)
+                processHandlerObject.value++;
+            else
+                console.log('Результат -> ' + genObjects[val].tex[genObjects[val].maxPrecision.index]);
+        });
     }
     else if (genObjects[val - 1].tex.length && !boolGen) {
         if (count == 0) {
