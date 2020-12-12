@@ -1,17 +1,17 @@
 const bin = require('../temp/bin.json');
 const cfg = require('../config.json');
 const genObject = require('./genObject').genObject;
-const scan = require('./searchArea').scan;
+const scan = require('./comparison');
 
 function searchSymbols(originalMatrix, callback) {
     let object = new genObject();
     for (i in bin) {
-        let resultScan = scan(cfg.precisionSearchSymbols, originalMatrix, bin[i][1]);
-        if (resultScan.areas.length) {
+        let resultScan = scan(originalMatrix, bin[i][1]);
+        if (cfg.precisionComparison <= resultScan) {
             object.tex.push(bin[i][0]);
-            object.areas.push(resultScan.areas);
-            if (object.maxPrecision.value < resultScan.maxPrecision) {
-                object.maxPrecision.value = resultScan.maxPrecision;
+            let fullResultScan = resultScan / originalMatrix.length;
+            if (object.maxPrecision.value < fullResultScan) {
+                object.maxPrecision.value = fullResultScan;
                 object.maxPrecision.index = object.tex.length - 1;
             }
         }
