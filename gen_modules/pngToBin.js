@@ -90,10 +90,11 @@ function pngToBin(prefix, postfix, countStart, countEnd) {
                         tempCount++;
                     }
                 }
+                boolNewCount = true;
+                tempCount++;
             }
             matrix = matrix.filter(m => m);
             //***
-
             //создает массив массивов индексов связных пространств***
             let count = 0;
             let arrayConnectedSpaces = new Array();
@@ -157,7 +158,7 @@ function pngToBin(prefix, postfix, countStart, countEnd) {
                 }
             }
             //***
-
+            
             //восстанавливает матрицы пикселей из массивов индексов(возможно, стоит вообще отказаться от этого, ЭТО ВАЖНО)***
             matrix = new Array();
             for (let iCount = 0; iCount < arrayConnectedSpaces.length; iCount++) {
