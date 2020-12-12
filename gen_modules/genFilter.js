@@ -13,15 +13,10 @@ let reg = [
     /{-}/g,
 ];
 
-function genFilter(fGenObjects, index, maxWidth, maxHeight) {
+function genFilter(fGenObjects, index) {
     let object = new genObject();
     for (let i = 0; i < fGenObjects[index].tex.length; i++) {
         let filterBool = true;
-
-        if (filterBool) {
-            if (maxWidth < fGenObjects[index].areas[i][1] || maxHeight < fGenObjects[index].areas[i][3])
-                filterBool = false;
-        }
 
         if (filterBool) {
             for (let j = 0; j < reg.length; j++) {
@@ -58,10 +53,8 @@ function genFilter(fGenObjects, index, maxWidth, maxHeight) {
             }
         }
 
-        if (filterBool) {
+        if (filterBool)
             object.tex.push(fGenObjects[index].tex[i]);
-            object.areas.push(fGenObjects[index].areas[i]);
-        }
     }
     return object;
 }
