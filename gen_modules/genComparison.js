@@ -1,17 +1,17 @@
 const genObject = require('./genObject').genObject;
-const scan = require('./searchArea').scan;
+const scan = require('./comparison');
 const cfg = require('../config.json');
 
 function genComparison(originalMatrix, comparisonMatrixes, genObjectTex) {
     let object = new genObject;
 
     for (let i = 0; i < comparisonMatrixes.length; i++) {
-        let resultScan = scan(cfg.precisionComparison, originalMatrix, comparisonMatrixes[i]);
-        if (resultScan.areas.length) {
+        let resultScan = scan(originalMatrix, comparisonMatrixes[i]);
+        if (cfg.precisionComparison <= resultScan) {
             object.tex.push(genObjectTex[i]);
-            object.areas.push(resultScan.areas);
-            if (object.maxPrecision.value < resultScan.maxPrecision) {
-                object.maxPrecision.value = resultScan.maxPrecision;
+            let fullResultScan = resultScan * (comparisonMatrixes[i].length / originalMatrix.length);
+            if (object.maxPrecision.value < fullResultScan) {
+                object.maxPrecision.value = fullResultScan;
                 object.maxPrecision.index = object.tex.length - 1;
             }
         }
