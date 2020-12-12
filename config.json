@@ -13,5 +13,7 @@
 
     "factorWidthArea": "1.25",
     "factorHeightArea": "1.5",
-    "outputFactorArea": "10"
+    "outputFactorArea": "10",
+
+    "countTestComparison": "2"
 }
