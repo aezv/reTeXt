@@ -9,7 +9,7 @@ function searchSymbols(originalMatrix, callback) {
         let resultScan = scan(originalMatrix, bin[i][1]);
         if (cfg.precisionComparison <= resultScan) {
             object.tex.push(bin[i][0]);
-            let fullResultScan = resultScan / originalMatrix.length;
+            let fullResultScan = resultScan * (bin[i][1].length / originalMatrix.length);
             if (object.maxPrecision.value < fullResultScan) {
                 object.maxPrecision.value = fullResultScan;
                 object.maxPrecision.index = object.tex.length - 1;
