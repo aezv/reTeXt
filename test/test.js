@@ -1,33 +1,23 @@
-const testScan = require('./testScan').testScan;
+const cfg = require('../config.json');
+const testComparison = require('./testComparison');
 
-QUnit.assert.scan = function (original, current, expected) {
+QUnit.assert.comparison = function (original, comparison) {
   this.pushResult({
-    result: current[1] >= expected,
-    actual: 'значение: ' + current[0] + ', точность: ' + current[1],
-    expected: 'значение: ' + current[0] + ', точность: ' + expected,
+    result: comparison[1] >= cfg.precisionComparison,
+    actual: 'значение: ' + comparison[0] + ', точность: ' + comparison[1],
+    expected: 'значение: ' + comparison[0] + ', точность: ' + cfg.precisionComparison,
     message: 'не достигнута необходимая точность для [' + original[0] + ']'
   });
 };
 
-QUnit.module('testScan', function () {
-
-  const correct = 0.9995;
-
-  QUnit.test('Тест сканирования 0', function (assert) {
+QUnit.module('Comparison');
+for (let i = 0; i < cfg.countTestComparison; i++) {
+  QUnit.test('Тест сканирования ' + i, function (assert) {
     let done = assert.async();
-    testScan(0, function (error, scanArray) {
+    testComparison(i, function (result) {
       done();
-      for (let i = 0; i < scanArray.length; i++)
-        assert.scan(scanArray[0], scanArray[i], correct);
+      for (let i = 0; i < result.length; i++)
+        assert.comparison(result[0], result[i]);
     });
   });
-
-  QUnit.test('Тест сканирования 1', function (assert) {
-    let done = assert.async();
-    testScan(1, function (error, scanArray) {
-      done();
-      for (let i = 0; i < scanArray.length; i++)
-        assert.scan(scanArray[0], scanArray[i], correct);
-    });
-  });
-});
+}
