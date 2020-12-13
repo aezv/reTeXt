@@ -7,7 +7,7 @@ const searchSymbols = require('./gen_modules/genSearchSymbols');
 const genFilter = require('./gen_modules/genFilter');
 const genProcessingArea = require('./gen_modules/genProcessingArea');
 
-function genAlgorithm(binMatrixesBlock, callback) {
+function genAlgorithm(initialGenObject, binMatrixesBlock, callback) {
     let comparisonBuffer = new Array();
     let genObjects = new Array();
 
@@ -99,10 +99,9 @@ function genAlgorithm(binMatrixesBlock, callback) {
 
 
     originalMatrix = binMatrixesBlock;
-    searchSymbols(originalMatrix, function (error, rGenObject) {
-        genObjects[0] = rGenObject;
-        console.log('Подбор символов завершен');
-        console.log('Найдены символы: ' + genObjects[0].tex);
+    if (initialGenObject) {
+        genObjects[0].tex = initialGenObject;
+        console.log('Получены блоки: ' + genObjects[0].tex);
         if (genObjects[0].maxPrecision.value <= 0.995) {
             processHandlerObject.value++;
         }
@@ -110,7 +109,21 @@ function genAlgorithm(binMatrixesBlock, callback) {
             console.log('Результат -> ' + genObjects[0].tex[genObjects[0].maxPrecision.index]);
             callback(genObjects[0].tex[genObjects[0].maxPrecision.index]);
         }
-    });
+    }
+    else {
+        searchSymbols(originalMatrix, function (error, rGenObject) {
+            genObjects[0] = rGenObject;
+            console.log('Подбор символов завершен');
+            console.log('Найдены символы: ' + genObjects[0].tex);
+            if (genObjects[0].maxPrecision.value <= 0.995) {
+                processHandlerObject.value++;
+            }
+            else {
+                console.log('Результат -> ' + genObjects[0].tex[genObjects[0].maxPrecision.index]);
+                callback(genObjects[0].tex[genObjects[0].maxPrecision.index]);
+            }
+        });
+    }
 
 }
 
