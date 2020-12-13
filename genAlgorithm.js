@@ -92,7 +92,12 @@ function genAlgorithm(initialGenObject, binMatrixesBlock, callback) {
             }
             else
                 count--;
-            processHandlerObject.value--;
+            if (0 <= val - offset - 1)
+                processHandlerObject.value--;
+            else {
+                console.log('Результат -> не удалось выполнить распознавание');
+                callback(null);
+            }
         }
     });
     //**************************************
@@ -100,14 +105,19 @@ function genAlgorithm(initialGenObject, binMatrixesBlock, callback) {
 
     originalMatrix = binMatrixesBlock;
     if (initialGenObject) {
+        genObjects[0] = new genObject();
         genObjects[0].tex = initialGenObject;
         console.log('Получены блоки: ' + genObjects[0].tex);
-        if (genObjects[0].maxPrecision.value <= 0.995) {
+        if (genObjects[0].maxPrecision.value <= 0.995 && genObjects[0].tex.length) {
             processHandlerObject.value++;
         }
-        else {
+        else if (genObjects[0].tex.length) {
             console.log('Результат -> ' + genObjects[0].tex[genObjects[0].maxPrecision.index]);
             callback(genObjects[0].tex[genObjects[0].maxPrecision.index]);
+        }
+        else {
+            console.log('Результат -> не удалось распознать блок');
+            callback(null);
         }
     }
     else {
@@ -115,12 +125,16 @@ function genAlgorithm(initialGenObject, binMatrixesBlock, callback) {
             genObjects[0] = rGenObject;
             console.log('Подбор символов завершен');
             console.log('Найдены символы: ' + genObjects[0].tex);
-            if (genObjects[0].maxPrecision.value <= 0.995) {
+            if (genObjects[0].maxPrecision.value <= 0.995 && genObjects[0].tex.length) {
                 processHandlerObject.value++;
             }
-            else {
+            else if (genObjects[0].tex.length) {
                 console.log('Результат -> ' + genObjects[0].tex[genObjects[0].maxPrecision.index]);
                 callback(genObjects[0].tex[genObjects[0].maxPrecision.index]);
+            }
+            else {
+                console.log('Результат -> не удалось распознать символы');
+                callback(null);
             }
         });
     }
