@@ -1,5 +1,4 @@
 const genObject = require('./gen_modules/genObject');
-const pngToBin = require('./gen_modules/pngToBin');
 const compileBin = require('./gen_modules/compileBin');
 const genComparison = require('./gen_modules/genComparison');
 const selection = require('./gen_modules/genSelection');
