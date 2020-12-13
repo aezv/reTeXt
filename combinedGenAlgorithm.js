@@ -1,9 +1,6 @@
-const pngToBinBlock = require('./gen_modules/pngToBinBlock');
 const genAlgorithm = require('./genAlgorithm');
 
-pngToBinBlock('./test1.png').then(function (result) {
-    result = result[0];
-
+function combinedGenAlgorithm(block, callback) {
     let str = '';
 
     let processHandler = {
@@ -22,25 +19,26 @@ pngToBinBlock('./test1.png').then(function (result) {
     }
 
     processHandler.listener(function (val) {
-        if (val < result.length) {
-            console.log('Обработка блока ' + val);
-            genAlgorithm(result[val], function (element) {
-                console.log('Обработка блока ' + val + ' завершена, результат -> ' + element);
+        if (val < block.length) {
+            console.log('Обработка подблока ' + val);
+            genAlgorithm(null, block[val], function (element) {
+                console.log('Обработка подблока ' + val + ' завершена, результат -> ' + element);
                 str += element;
                 processHandler.value++;
             });
         }
         else {
-            console.log('Все блоки обработаны');
-            console.log('Итоговый результат -> ' + str);
+            console.log('Все подблоки обработаны');
+            callback(str);
         }
     });
 
-    console.log('Обработка блока 0');
-    genAlgorithm(result[0], function (element) {
-        console.log('Обработка блока 0 завершена, результат -> ' + element);
+    console.log('Обработка подблока 0');
+    genAlgorithm(null, block[0], function (element) {
+        console.log('Обработка подблока 0 завершена, результат -> ' + element);
         str += element;
         processHandler.value++;
     });
+}
 
-});
+module.exports = combinedGenAlgorithm;
