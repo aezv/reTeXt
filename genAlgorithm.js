@@ -4,7 +4,6 @@ const genComparison = require('./gen_modules/genComparison');
 const selection = require('./gen_modules/genSelection');
 const searchSymbols = require('./gen_modules/genSearchSymbols');
 const genFilter = require('./gen_modules/genFilter');
-const genProcessingArea = require('./gen_modules/genProcessingArea');
 
 function genAlgorithm(initialGenObject, binMatrixesBlock, callback) {
     let comparisonBuffer = new Array();
