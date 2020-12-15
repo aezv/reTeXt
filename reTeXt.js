@@ -48,7 +48,7 @@ processHandler.listener(function (val) {
     }
 });
 
-pngToBinBlock('./test1.png').then(function (result) {
+pngToBinBlock(process.argv[2]).then(function (result) {
     originalObject = result[0];
     console.log('Количество основных блоков: ' + originalObject.length);
     console.log('Обработка основного блока 0');
