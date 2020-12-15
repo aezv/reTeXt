@@ -3,7 +3,7 @@
     "port": "3000",
 
     "pathCompile": "temp/compile",
-    "prefix": "\\documentclass[fleqn]{article}\\usepackage[left=0mm, top=0mm, right=0mm, bottom=0mm]{geometry}\\usepackage{amsmath, amssymb}\\pagestyle{empty}\\begin{document}\\noindent",
+    "prefix": "\\documentclass[fleqn]{article}\\usepackage[left=0mm, top=0mm, right=0mm, bottom=0mm]{geometry}\\usepackage{amsmath, amssymb}\\pagestyle{empty}\\begin{document}",
     "postfix": "\\end{document}",
     "prefixFormulas": " \\[{}",
     "postfixFormulas": "{}\\]\\newpage ",
