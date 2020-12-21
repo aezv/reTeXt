@@ -57,7 +57,6 @@ pngToBinBlock(process.argv[2]).then(function (result) {
             console.log('Основной блок 0 обработан');
             console.log('Результат -> ' + element);
             reTeXt.push(element);
-            console.log('TTTTTTTTTTTTTTTTT');
             processHandler.value++;
         }
         else {
