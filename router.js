@@ -1,6 +1,9 @@
 const cfg = require('./config.json');
 const child_process = require('child_process');
 const router = require('express').Router();
+const bodyParser = require("body-parser");
+
+const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 const mainTemplate = require('./source/templates/main');
 const processingTemplate = require('./source/templates/processing');
@@ -21,8 +24,8 @@ router.post('/processing', function (req, res) {
     res.send(processingTemplate({ headerL2: 'Не удалось обработать изображение' }));
 });
 
-router.post('/result', function (req, res) {
-  child_process.exec('node reTeXt.js "docs/k6.png"', function (error, stdout, stderr) {
+router.post('/result', urlencodedParser, function (req, res) {
+  child_process.exec('node reTeXt.js temp/image/' + req.body.pathImage, function (error, stdout, stderr) {
     let arrayData = stdout.split('\n');
     res.send(resultTemplate({
       result: arrayData[arrayData.length - 2],
