@@ -28,6 +28,7 @@ const source =
     '<button type="submit">Главная страница</button>' +
     '</form>' +
     
+    '{{result}}' + '<br>' + 
     '{{{loud data}}}' +
 
     '</body>' +
