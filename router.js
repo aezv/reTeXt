@@ -22,9 +22,10 @@ router.post('/processing', function (req, res) {
 });
 
 router.post('/result', function (req, res) {
-  let processExec = child_process.exec('node genAlgorithm.js', function (error, stdout, stderr) {
+  child_process.exec('node reTeXt.js "docs/k6.png"', function (error, stdout, stderr) {
     let arrayData = stdout.split('\n');
     res.send(resultTemplate({
+      result: arrayData[arrayData.length - 2],
       data: arrayData
     }));
   });
