@@ -31,6 +31,7 @@ const source =
     '</form>' +
 
     '<form action="/result" method="post">' +
+    '<input type="text" name="pathImage" size="50" readonly value="{{pathImage}}">' +
     '<button type="submit">Запустить алгоритм</button>' +
     '</form>' +
 
