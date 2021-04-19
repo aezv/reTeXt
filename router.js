@@ -5,9 +5,9 @@ const bodyParser = require("body-parser");
 
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
-const mainTemplate = require('./source/templates/main');
-const processingTemplate = require('./source/templates/processing');
-const resultTemplate = require('./source/templates/result');
+const mainTemplate = require('./source_server/templates/main');
+const processingTemplate = require('./source_server/templates/processing');
+const resultTemplate = require('./source_server/templates/result');
 
 router.get('/', function (req, res) {
   res.send(mainTemplate());

@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 app.use(multer({ storage: storage }).single('fileData'));
 
 
-app.use(express.static('source'));
+app.use(express.static('source_server'));
 app.use(express.static('temp/image'));
 
 app.use('/', router);
