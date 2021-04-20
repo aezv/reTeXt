@@ -1,5 +1,15 @@
 #include "methods_image.h"
 
+void img_printf(unsigned char *img, int width, int heigth)
+{
+    for (int y = 0; y < heigth; y++)
+    {
+        for (int x = 0; x < width; x++)
+            printf("%d", img[y * width + x]);
+        printf("\n");
+    }
+}
+
 unsigned char *img_binarization(unsigned char *img, int width, int heigth, unsigned char threshold)
 {
     unsigned char *bin_image = malloc(sizeof(unsigned char) * width * heigth);
