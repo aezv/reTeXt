@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
 
-project(re_math VERSION 0.1 LANGUAGES C CXX)
+project(reTeXt VERSION 0.1 LANGUAGES C CXX)
 
 message("
 Includes:
@@ -14,5 +14,5 @@ Source:
     main.c
     methods_image.c
 ")
-add_executable(re_math source/main.c)
-target_sources(re_math PUBLIC source/methods_image.c)
+add_executable(reTeXt source/main.c)
+target_sources(reTeXt PUBLIC source/methods_image.c)
